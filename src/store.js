@@ -12,7 +12,7 @@ export default new Vuex.Store({
     procedures: [
       '+', '-', '*', '/',
     ],
-    num: '',
+    num: [],
     op: '',
     totals: null,
   },
@@ -25,7 +25,12 @@ export default new Vuex.Store({
     TOTALS: state => state.totals,
   },
   mutations: {
-    CURRENT_NUMBER: (state, payload) => state.num = payload,
+    CURRENT_NUMBER: (state, payload) => {
+      state.num = Array.from(state.num);
+      const newStateNum = [...state.num, payload].join('');
+      window.newStateNum = newStateNum;
+      return state.num = newStateNum;
+    },
     CURRENT_PROCEDURE: (state, payload) => state.op = payload,
     CALC: (state, payload) => {
       switch (state.op) {
@@ -35,7 +40,7 @@ export default new Vuex.Store({
             if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
             return state.totals;
           }
-          state.totals = state.num + payload;
+          state.totals = +state.num + payload;
           if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
           return state.totals;
 
@@ -45,7 +50,7 @@ export default new Vuex.Store({
             if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
             return state.totals;
           }
-          state.totals = state.num - payload;
+          state.totals = +state.num - payload;
           if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
           return state.totals;
 
@@ -56,7 +61,7 @@ export default new Vuex.Store({
             if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
             return state.totals;
           }
-          state.totals = state.num * payload;
+          state.totals = +state.num * payload;
           if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
           return state.totals;
 
@@ -67,7 +72,7 @@ export default new Vuex.Store({
             if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
             return state.totals;
           }
-          state.totals = state.num / payload;
+          state.totals = +state.num / payload;
           if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
           return state.totals;
 
