@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.956cfdfafc39ecd5b0634027cec1e319.js"
+  "/for_vano/precache-manifest.1c7a5671fc4e46b5d8124dccad6bdb4f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "ria"});
