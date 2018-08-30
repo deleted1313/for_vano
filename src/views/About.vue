@@ -2,10 +2,14 @@
   <div class="about">
     <div class="result">{{animatedNumber === false ? '' : animatedNumber}}</div>
     <div class="grid num">
-      <div v-for="num in numbers" @click="setCurrentNumber(num)">{{num}}</div>
+      <div v-for="num in numbers" @click="setCurrentNumber(num)">
+        {{num}}
+      </div>
     </div>
     <div class="grid">
-      <div v-for="op in operands" @click="setCurrentOperand(op)"><span>{{op}}</span></div>
+      <div v-for="op in operands" @click="setCurrentOperand(op)">
+        <span>{{op}}</span>
+      </div>
     </div>
     <!-- <span @click="decrease">-</span> -->
     <!-- <h1>{{computedCount}}</h1> -->
@@ -26,14 +30,14 @@ export default {
   },
   methods: {
     setCurrentNumber(number) {
-      if (this.$store.getters.CURRENT_OPERAND 
+      if (this.$store.getters.CURRENT_PROCEDURE 
       &&  this.$store.getters.CURRENT_NUM) {
         return this.calc(number)
       }
       return this.$store.dispatch('SET_CURRENT_NUBMER', number)
     },
     setCurrentOperand(operand) {
-      this.$store.dispatch('SET_CURRENT_OPERAND', operand)
+      this.$store.dispatch('SET_CURRENT_PROCEDURE', operand)
     },
     calc(number) {
       this.$store.dispatch('CALC', number)
@@ -53,7 +57,7 @@ export default {
     },
     operands: {
       get() {
-        return this.operands = this.$store.getters.OPERANDS
+        return this.operands = this.$store.getters.PROCEDURES
       }
     },
     numbers: {

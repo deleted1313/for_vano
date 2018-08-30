@@ -9,7 +9,7 @@ export default new Vuex.Store({
     numbers: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 0,
     ],
-    operands: [
+    procedures: [
       '+', '-', '*', '/',
     ],
     num: '',
@@ -19,14 +19,14 @@ export default new Vuex.Store({
   getters: {
     COUNT: state => state.count,
     NUMBERS: state => state.numbers,
-    OPERANDS: state => state.operands,
-    CURRENT_OPERAND: state => state.op,
+    PROCEDURES: state => state.procedures,
+    CURRENT_PROCEDURE: state => state.op,
     CURRENT_NUM: state => state.num,
     TOTALS: state => state.totals,
   },
   mutations: {
     CURRENT_NUMBER: (state, payload) => state.num = payload,
-    CURRENT_OPERAND: (state, payload) => state.op = payload,
+    CURRENT_PROCEDURE: (state, payload) => state.op = payload,
     CALC: (state, payload) => {
       switch (state.op) {
         case '+':
@@ -50,8 +50,8 @@ export default new Vuex.Store({
     SET_CURRENT_NUBMER: (context, payload) => {
       context.commit('CURRENT_NUMBER', payload);
     },
-    SET_CURRENT_OPERAND: (context, payload) => {
-      context.commit('CURRENT_OPERAND', payload);
+    SET_CURRENT_PROCEDURE: (context, payload) => {
+      context.commit('CURRENT_PROCEDURE', payload);
     },
     CALC: (context, payload) => {
       context.commit('CALC', payload);
