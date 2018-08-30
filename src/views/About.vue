@@ -48,6 +48,7 @@ export default {
       return this.$store.getters.TOTALS
     },
     animatedNumber: function() {
+      if (this.newTotals === Infinity) {this.tweenedNumber = 0}
       return this.newTotals !== null && this.tweenedNumber.toFixed(0);
     },
     computedCount: {

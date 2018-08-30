@@ -30,17 +30,48 @@ export default new Vuex.Store({
     CALC: (state, payload) => {
       switch (state.op) {
         case '+':
-          if (state.totals || state.totals === 0) { return state.totals += payload; }
-          return state.totals = state.num + payload;
+          if (state.totals || state.totals === 0) {
+            state.totals += payload;
+            if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+            return state.totals;
+          }
+          state.totals = state.num + payload;
+          if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+          return state.totals;
+
         case '-':
-          if (state.totals || state.totals === 0) { return state.totals -= payload; }
-          return state.totals = state.num - payload;
+          if (state.totals || state.totals === 0) {
+            state.totals -= payload;
+            if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+            return state.totals;
+          }
+          state.totals = state.num - payload;
+          if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+          return state.totals;
+
+
         case '*':
-          if (state.totals || state.totals === 0) { return state.totals *= payload; }
-          return state.totals = state.num * payload;
+          if (state.totals || state.totals === 0) {
+            state.totals *= payload;
+            if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+            return state.totals;
+          }
+          state.totals = state.num * payload;
+          if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+          return state.totals;
+
+
         case '/':
-          if (state.totals || state.totals === 0) { return state.totals /= payload; }
-          return state.totals = state.num / payload;
+          if (state.totals || state.totals === 0) {
+            state.totals /= payload;
+            if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+            return state.totals;
+          }
+          state.totals = state.num / payload;
+          if (state.totals === Infinity || state.totals === -Infinity) { return state.totals = 0; }
+          return state.totals;
+
+
         default:
           return state;
       }
